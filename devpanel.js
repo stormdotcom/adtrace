@@ -232,6 +232,10 @@ function selectEntry(entry) {
         '<button class="action-btn highlight" id="actHighlight">Highlight Element</button>' +
         '<button class="action-btn inspect" id="actInspect">Inspect on Page</button>' +
       '</div>' +
+      (entry.ruleSource === 'custom' || entry.ruleSource === 'static' ? 
+      '<div class="action-row">' +
+        '<button class="action-btn" id="actEditRule" style="width:100%; margin-top:6px; background:var(--navy-4); border:1px solid var(--border); color:var(--cyan); font-family:var(--font-mono); font-size:10px; padding:6px; cursor:pointer; border-radius:3px;">Edit/View Rule in Options</button>' +
+      '</div>' : '') +
     '</div>' +
 
     '<div class="detail-section">' +
@@ -260,6 +264,13 @@ function selectEntry(entry) {
     chrome.tabs.sendMessage(tabId, { type: 'ENTER_INSPECT_MODE' });
     flashStatus('Inspect mode activated');
   });
+  const editBtn = document.getElementById('actEditRule');
+  if (editBtn) {
+    editBtn.addEventListener('click', () => {
+      const hash = entry.ruleSource === 'custom' ? '#customNetworkRules' : '#staticRules';
+      chrome.tabs.create({ url: chrome.runtime.getURL('options.html') + hash });
+    });
+  }
 }
 
 // ─── Timeline View (Ad-Aware HAR Viewer) ───

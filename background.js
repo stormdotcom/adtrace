@@ -25,6 +25,12 @@ const RULE_ATTRIBUTION = {
   14: { filter: '||criteo.com^', list: 'EasyList', category: 'ad', desc: 'Criteo retargeting', intent: 'ad-network' },
   19: { filter: '||moatads.com^', list: 'EasyList', category: 'ad', desc: 'Moat ad verification', intent: 'ad-network' },
   20: { filter: '||pubmatic.com^', list: 'EasyList', category: 'ad', desc: 'PubMatic programmatic SSP', intent: 'ad-network' },
+  21: { filter: '||rubiconproject.com^', list: 'EasyList', category: 'ad', desc: 'Magnite / Rubicon Project SSP', intent: 'ad-network' },
+  22: { filter: '||openx.net^', list: 'EasyList', category: 'ad', desc: 'OpenX ad exchange', intent: 'ad-network' },
+  23: { filter: '||indexww.com^', list: 'EasyList', category: 'ad', desc: 'Index Exchange SSP', intent: 'ad-network' },
+  24: { filter: '||casalemedia.com^', list: 'EasyList', category: 'ad', desc: 'Casale Media / Index Exchange', intent: 'ad-network' },
+  25: { filter: '||yieldmo.com^', list: 'EasyList', category: 'ad', desc: 'Yieldmo mobile ads', intent: 'ad-network' },
+  26: { filter: '||sovrn.com^', list: 'EasyList', category: 'ad', desc: 'Sovrn / AdSection', intent: 'ad-network' },
 
   // EasyPrivacy — Trackers
   11: { filter: '||analytics.google.com/analytics/collect', list: 'EasyPrivacy', category: 'tracker', desc: 'Google Analytics beacon', intent: 'analytics' },
@@ -33,12 +39,22 @@ const RULE_ATTRIBUTION = {
   16: { filter: '||segment.com/analytics.js', list: 'EasyPrivacy', category: 'tracker', desc: 'Segment analytics.js', intent: 'analytics' },
   17: { filter: '||mixpanel.com^', list: 'EasyPrivacy', category: 'tracker', desc: 'Mixpanel product analytics', intent: 'analytics' },
   18: { filter: '||intercom.io^', list: 'EasyPrivacy', category: 'tracker', desc: 'Intercom chat/analytics', intent: 'analytics' },
+  27: { filter: '||amplitude.com^', list: 'EasyPrivacy', category: 'tracker', desc: 'Amplitude product analytics', intent: 'analytics' },
+  28: { filter: '||fullstory.com^', list: 'EasyPrivacy', category: 'tracker', desc: 'FullStory session replay', intent: 'session-replay' },
+  29: { filter: '||logrocket.com^', list: 'EasyPrivacy', category: 'tracker', desc: 'LogRocket session recording', intent: 'session-replay' },
+  30: { filter: '||clarity.ms^', list: 'EasyPrivacy', category: 'tracker', desc: 'Microsoft Clarity heatmaps', intent: 'session-replay' },
+  31: { filter: '||newrelic.com^', list: 'EasyPrivacy', category: 'tracker', desc: 'New Relic APM/browser monitoring', intent: 'analytics' },
+  32: { filter: '||datadoghq.com^', list: 'EasyPrivacy', category: 'tracker', desc: 'Datadog monitoring', intent: 'analytics' },
 
   // Social — Tracking pixels
   4:  { filter: '||facebook.com/tr', list: 'Social', category: 'social', desc: 'Facebook Conversion Pixel', intent: 'ad-network' },
   5:  { filter: '||connect.facebook.net/**/fbevents.js', list: 'Social', category: 'social', desc: 'Facebook Events SDK', intent: 'ad-network' },
   7:  { filter: '||ads.twitter.com^', list: 'Social', category: 'social', desc: 'Twitter Ads', intent: 'ad-network' },
   8:  { filter: '||static.ads-twitter.com^', list: 'Social', category: 'social', desc: 'Twitter Ads Static', intent: 'ad-network' },
+  33: { filter: '||platform.linkedin.com^', list: 'Social', category: 'social', desc: 'LinkedIn Insights/Ads', intent: 'analytics' },
+  34: { filter: '||snap.licdn.com^', list: 'Social', category: 'social', desc: 'LinkedIn Ads beacon', intent: 'analytics' },
+  35: { filter: '||t.tiktok.com^', list: 'Social', category: 'social', desc: 'TikTok tracking pixel', intent: 'analytics' },
+  36: { filter: '||pinterest.com/ct.js', list: 'Social', category: 'social', desc: 'Pinterest Tag', intent: 'analytics' },
 };
 
 // ─── Script Intent Classification: domain → intent ───

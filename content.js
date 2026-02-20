@@ -136,18 +136,34 @@
       top: ${top}px !important;
       left: ${left}px !important;
       width: 330px !important;
-      background: #080d1a !important;
-      border: 1px solid #00d4ff !important;
-      border-radius: 6px !important;
+      background: rgba(8, 13, 26, 0.9) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(0, 212, 255, 0.3) !important;
+      border-radius: 12px !important;
       padding: 0 !important;
       z-index: 2147483647 !important;
       font-family: 'JetBrains Mono', monospace !important;
       font-size: 11px !important;
       color: #e2e8f0 !important;
-      box-shadow: 0 8px 32px rgba(0,0,0,.6), 0 0 0 1px rgba(0,212,255,.2) !important;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,212,255,0.1) !important;
       pointer-events: auto !important;
       line-height: 1.5 !important;
+      overflow: hidden !important;
+      animation: adtraceFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     `;
+
+    if (!document.getElementById('adtrace-animations')) {
+      const style = document.createElement('style');
+      style.id = 'adtrace-animations';
+      style.textContent = `
+        @keyframes adtraceFadeIn {
+          from { opacity: 0; transform: translateY(4px) scale(0.98); }
+          to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
 
     // Highlight the element
     el.style.setProperty('outline', '2px solid #00d4ff', 'important');
