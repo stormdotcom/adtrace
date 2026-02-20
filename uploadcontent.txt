@@ -1,0 +1,78 @@
+xtension nameAdTraceShort description (132 chars max)Surgical ad blocker with DevTools-level visibility — inspect, trace, and debug ad & tracker requests like a developer.Detailed descriptionSee below ↓CategoryDeveloper ToolsLanguageEnglish
+
+Detailed Description (paste this verbatim)
+AdTrace is a developer-grade ad blocker built for web professionals who need to both block ads AND understand what the ad layer is doing.
+
+Unlike regular ad blockers, AdTrace gives you full DevTools-level visibility into every blocked request — perfect for auditing client sites, debugging ad integrations, or understanding what trackers a site runs.
+
+─── FEATURES ───
+
+▸ LIVE BLOCK LOG
+Every blocked network request logged in real time with URL, resource type, matched rule attribution, and timestamp. Filter by category: Ads, Trackers, Social Pixels.
+
+▸ DEVTOOLS PANEL
+A dedicated panel inside Chrome DevTools (open DevTools → AdTrace tab) showing a full request table, 60-second timeline, and detail pane. Click any request to see the full URL, matched rule, filter pattern, and take action instantly.
+
+▸ DEV OVERLAY MODE
+Toggle a visual overlay that highlights blocked ad elements on the page with cyan outlines and ADTRACE BLOCKED badges — see exactly what was hidden and where.
+
+▸ SIMULATE USER VIEW
+One click to see the page exactly as a regular (non-dev) user would, with all ads visible. Toggle back to dev view instantly.
+
+▸ DOMAIN OVERRIDES
+Allow or hard-block any domain with one click. Localhost and 127.0.0.1 are automatically whitelisted so your dev environment always works.
+
+▸ CUSTOM RULES
+Write your own network filter rules (AdBlock syntax: ||domain.com^) and cosmetic CSS rules (##.selector) with live apply — no page reload needed for cosmetic rules.
+
+▸ BLOCK REPORTS
+Export a full JSON or CSV report of every blocked request on a page — useful for auditing what ad networks and trackers a client site is running.
+
+─── BLOCKS ───
+Google Ads · DoubleClick · AdSense · Facebook Pixel · Twitter Ads · Amazon Ads · Taboola · Outbrain · Criteo · AppNexus · PubMatic · Google Analytics · Hotjar · Mixpanel · Segment · Intercom · and more.
+
+─── FOR DEVELOPERS ───
+- Built on Manifest V3 (declarativeNetRequest)
+- No background page — service worker only
+- localhost / 127.0.0.1 auto-whitelisted
+- Firefox 113+ compatible (load via about:debugging)
+- Zero telemetry, zero external requests, 100% local
+
+AdTrace is open source and ad-free.
+
+Store Listing Graphics (sizes you need to prepare)
+AssetSizeNotesIcon128×128 PNGAlready in /icons/icon128.pngSmall promo tile440×280 PNGRequired for listingScreenshot 11280×800 or 640×400Show the popup with live logScreenshot 21280×800Show the DevTools panelScreenshot 31280×800Show dev overlay on a real siteLarge promo tile920×680 PNGOptional but recommendedMarquee promo1400×560 PNGOptional, shown on homepage
+
+Privacy / Permissions Justification
+Chrome will ask you to justify each permission. Use these:
+PermissionJustificationdeclarativeNetRequestCore ad blocking — intercept and block network requests matching filter rulesdeclarativeNetRequestFeedbackLog which requests were blocked and which rule matched, for the dev log featuretabsRead the current tab URL to show per-domain stats and domain overridesstoragePersist user settings, custom rules, and domain overrides locallyactiveTabInteract with the current page for dev overlay and simulate-user featuresscriptingInject the dev overlay and cosmetic filtering into pageswebNavigationDetect page navigation to reset the block log per page loaddownloadsExport block reports as JSON/CSV files to the user's machinehost_permissions: <all_urls>Blocking and cosmetic filtering must work on all websites
+
+Privacy Policy (required for store submission)
+You'll need a URL to a privacy policy page. Minimal version to post somewhere (GitHub README works):
+AdTrace Privacy Policy
+
+AdTrace collects no personal data. All processing happens locally in your browser.
+No data is sent to any server. No analytics. No telemetry.
+Blocked request logs are stored in memory only and cleared on page navigation.
+Custom rules and settings are stored locally via chrome.storage.local.
+
+Step-by-step upload
+
+Go to chrome.google.com/webstore/devconsole
+Pay the one-time $5 developer registration fee (if not already registered)
+Click New Item → upload the adtrace-extension.zip
+Fill in the fields above
+Upload the promo graphics (440×280 minimum required)
+Set Category → Developer Tools
+Set Visibility → Public (or Unlisted for testing)
+Paste the privacy policy URL
+Click Submit for Review
+
+Review typically takes 1–3 business days for a new extension.
+
+For Firefox (AMO)
+When you're ready to publish on Mozilla:
+
+Go to addons.mozilla.org/developers
+Upload the same .zip — it works as-is for Firefox 113+
+The only Firefox-specific note: onRuleMatchedDebug (live block logging) requires Firefox Developer Edition; blocking itself works on all Firefox 113+

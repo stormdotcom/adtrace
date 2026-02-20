@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+<script>
+  // Create the AdTrace panel in Chrome DevTools
+  chrome.devtools.panels.create(
+    "AdTrace",
+    "icons/icon16.png",
+    "devpanel.html",
+    function(panel) {
+      panel.onShown.addListener(function(win) {
+        // Panel became visible — trigger refresh
+        if (win.adtraceRefresh) win.adtraceRefresh();
+      });
+    }
+  );
+</script>
+</body>
+</html>

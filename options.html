@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AdTrace Options</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap');
+  :root {
+    --navy: #080d1a; --navy-2: #0d1528; --navy-3: #111d35; --navy-4: #1a2847;
+    --cyan: #00d4ff; --cyan-dim: #00d4ff22; --amber: #f59e0b;
+    --red: #ff4757; --green: #2dce7d;
+    --text: #e2e8f0; --text-muted: #64748b; --text-dim: #94a3b8;
+    --border: #1e2d4a;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-ui: 'Syne', system-ui, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background: var(--navy); color: var(--text); font-family: var(--font-ui); max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+  
+  .page-header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); position: relative; }
+  .page-header::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); }
+  h1 { font-family: var(--font-ui); font-size: 28px; font-weight: 800; letter-spacing: -.02em; }
+  h1 span { color: var(--cyan); }
+  .subtitle { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+  .section { margin-bottom: 28px; }
+  .section-title { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+  .option-row { display: flex; align-items: flex-start; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); gap: 16px; }
+  .option-row:last-child { border-bottom: none; }
+  .option-info { flex: 1; }
+  .option-label { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .option-desc { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); line-height: 1.5; }
+
+  .toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+  .toggle input { display: none; }
+  .toggle-track { position: absolute; inset: 0; background: var(--navy-4); border: 1px solid var(--border); border-radius: 12px; cursor: pointer; transition: all .2s; }
+  .toggle-thumb { position: absolute; top: 4px; left: 4px; width: 14px; height: 14px; background: var(--text-muted); border-radius: 50%; transition: transform .2s, background .2s; pointer-events: none; }
+  .toggle input:checked + .toggle-track { background: var(--cyan-dim); border-color: var(--cyan); }
+  .toggle input:checked + .toggle-track + .toggle-thumb { transform: translateX(20px); background: var(--cyan); }
+
+  textarea.code-input {
+    width: 100%; background: var(--navy-2); border: 1px solid var(--border); border-radius: 4px;
+    padding: 10px; font-family: var(--font-mono); font-size: 11px; color: var(--text);
+    outline: none; resize: vertical; min-height: 120px; transition: border-color .15s; line-height: 1.6;
+  }
+  textarea.code-input:focus { border-color: var(--cyan); }
+
+  .save-btn {
+    margin-top: 10px; padding: 8px 20px; background: var(--cyan-dim); border: 1px solid var(--cyan);
+    border-radius: 4px; color: var(--cyan); font-family: var(--font-mono); font-size: 11px;
+    cursor: pointer; text-transform: uppercase; letter-spacing: .07em; transition: all .15s;
+  }
+  .save-btn:hover { background: var(--cyan); color: var(--navy); }
+  .save-status { font-family: var(--font-mono); font-size: 10px; color: var(--green); margin-left: 10px; display: none; }
+
+  .info-box { background: var(--navy-2); border: 1px solid var(--border); border-left: 3px solid var(--cyan); padding: 12px 14px; border-radius: 4px; font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); line-height: 1.7; }
+  .info-box code { color: var(--cyan); }
+  
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .stat-box { background: var(--navy-2); border: 1px solid var(--border); border-radius: 4px; padding: 12px; text-align: center; }
+  .stat-box-num { font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--cyan); display: block; }
+  .stat-box-label { font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .07em; margin-top: 2px; display: block; }
+  
+  .firefox-note { background: #f59e0b11; border: 1px solid #f59e0b44; border-radius: 4px; padding: 10px 14px; font-family: var(--font-mono); font-size: 10px; color: var(--amber); line-height: 1.6; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="page-header">
+  <h1>Ad<span>Trace</span> Options</h1>
+  <div class="subtitle">v1.0.0 · Manifest V3 · Chrome + Firefox ready</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Blocking Behavior</div>
+  <div class="option-row">
+    <div class="option-info">
+      <div class="option-label">Block Ads</div>
+      <div class="option-desc">Block known advertising networks and display ad scripts</div>
+    </div>
+    <label class="toggle"><input type="checkbox" id="blockAds" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
+  </div>
+  <div class="option-row">
+    <div class="option-info">
+      <div class="option-label">Block Trackers</div>
+      <div class="option-desc">Block analytics and behavioral tracking scripts (GA, Hotjar, Mixpanel, etc.)</div>
+    </div>
+    <label class="toggle"><input type="checkbox" id="blockTrackers" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
+  </div>
+  <div class="option-row">
+    <div class="option-info">
+      <div class="option-label">Block Social Pixels</div>
+      <div class="option-desc">Block Facebook Pixel, Twitter tracking, LinkedIn Insight, etc.</div>
+    </div>
+    <label class="toggle"><input type="checkbox" id="blockSocial" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
+  </div>
+  <div class="option-row">
+    <div class="option-info">
+      <div class="option-label">Cosmetic Filtering</div>
+      <div class="option-desc">Hide ad placeholder elements via CSS selectors (in addition to network blocking)</div>
+    </div>
+    <label class="toggle"><input type="checkbox" id="cosmeticFilter" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
+  </div>
+  <div class="option-row">
+    <div class="option-info">
+      <div class="option-label">Auto-whitelist localhost & staging</div>
+      <div class="option-desc">Automatically allow all requests on localhost, 127.0.0.1, and .local domains</div>
+    </div>
+    <label class="toggle"><input type="checkbox" id="autoWhitelistLocal" checked><div class="toggle-track"></div><div class="toggle-thumb"></div></label>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Custom Whitelist Domains</div>
+  <div class="option-desc" style="margin-bottom: 8px; font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);">One domain per line. These domains will never be blocked.</div>
+  <textarea class="code-input" id="whitelistDomains" placeholder="staging.myapp.com&#10;preview.client-site.com&#10;dev.internal"></textarea>
+  <button class="save-btn" id="saveWhitelist">Save Whitelist</button>
+  <span class="save-status" id="wlStatus">✓ Saved</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Custom Network Filter Rules</div>
+  <div class="info-box" style="margin-bottom: 10px;">
+    Use AdBlock-style filter syntax:<br>
+    <code>||example.com^</code> — block entire domain<br>
+    <code>||cdn.example.com/ads/$script</code> — block specific path + type<br>
+    <code>@@||allowme.com^</code> — exception rule (whitelist)
+  </div>
+  <textarea class="code-input" id="customNetworkRules" placeholder="||ads.example.com^&#10;||tracking.site.net/pixel$image&#10;@@||trusted-cdn.com/script.js$script"></textarea>
+  <button class="save-btn" id="saveNetworkRules">Save Rules</button>
+  <span class="save-status" id="nrStatus">✓ Saved</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Custom Cosmetic Rules</div>
+  <div class="info-box" style="margin-bottom: 10px;">
+    CSS selector-based element hiding:<br>
+    <code>##.ad-banner</code> — hide globally<br>
+    <code>example.com##.promoted-post</code> — hide on specific domain<br>
+    <code>example.com#@#.sidebar</code> — exception (un-hide)
+  </div>
+  <textarea class="code-input" id="customCosmeticRules" placeholder="##.ad-slot&#10;##[data-ad-unit]&#10;example.com##.sponsored-content"></textarea>
+  <button class="save-btn" id="saveCosmeticRules">Save Rules</button>
+  <span class="save-status" id="crStatus">✓ Saved</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Session Statistics</div>
+  <div class="stat-grid">
+    <div class="stat-box"><span class="stat-box-num" id="totalBlocked">—</span><span class="stat-box-label">Total Blocked</span></div>
+    <div class="stat-box"><span class="stat-box-num" id="totalTrackers">—</span><span class="stat-box-label">Trackers Stopped</span></div>
+    <div class="stat-box"><span class="stat-box-num" id="totalAds">—</span><span class="stat-box-label">Ads Blocked</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Firefox Compatibility</div>
+  <div class="firefox-note">
+    AdTrace is built with Firefox MV3 compatibility in mind. The <code>declarativeNetRequest</code> API is supported in Firefox 113+. 
+    To install on Firefox: package as .xpi and submit to AMO, or load temporarily via <code>about:debugging</code>.
+    The <code>onRuleMatchedDebug</code> listener requires Firefox Developer Edition or Nightly builds for full debug logging.
+  </div>
+</div>
+
+<script>
+  const prefs = ['blockAds', 'blockTrackers', 'blockSocial', 'cosmeticFilter', 'autoWhitelistLocal'];
+  
+  chrome.storage.local.get([...prefs, 'whitelistDomains', 'customNetworkRules', 'customCosmeticRules'], (data) => {
+    prefs.forEach(key => {
+      const el = document.getElementById(key);
+      if (el) el.checked = data[key] !== false;
+    });
+    if (data.whitelistDomains) document.getElementById('whitelistDomains').value = data.whitelistDomains;
+    if (data.customNetworkRules) document.getElementById('customNetworkRules').value = data.customNetworkRules;
+    if (data.customCosmeticRules) document.getElementById('customCosmeticRules').value = data.customCosmeticRules;
+  });
+
+  prefs.forEach(key => {
+    document.getElementById(key)?.addEventListener('change', (e) => {
+      chrome.storage.local.set({ [key]: e.target.checked });
+    });
+  });
+
+  function makeSaveBtn(btnId, inputId, storageKey, statusId) {
+    document.getElementById(btnId).addEventListener('click', () => {
+      const val = document.getElementById(inputId).value;
+      chrome.storage.local.set({ [storageKey]: val }, () => {
+        const s = document.getElementById(statusId);
+        s.style.display = 'inline';
+        setTimeout(() => { s.style.display = 'none'; }, 2000);
+      });
+    });
+  }
+
+  makeSaveBtn('saveWhitelist', 'whitelistDomains', 'whitelistDomains', 'wlStatus');
+  makeSaveBtn('saveNetworkRules', 'customNetworkRules', 'customNetworkRules', 'nrStatus');
+  makeSaveBtn('saveCosmeticRules', 'customCosmeticRules', 'customCosmeticRules', 'crStatus');
+</script>
+</body>
+</html>
