@@ -1,0 +1,5 @@
+_metadata/
+nul
+*.py
+uploadcontent.txt
+.claude/
