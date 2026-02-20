@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdTrace | Surgical Ad Blocker for Developers</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+        
+        :root {
+            --navy: #080d1a;
+            --navy-light: #0d1528;
+            --cyan: #00d4ff;
+            --cyan-dim: rgba(0, 212, 255, 0.15);
+            --text: #e2e8f0;
+            --text-muted: #64748b;
+            --border: #1e2d4a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--navy);
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Nav */
+        nav {
+            padding: 32px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span { color: var(--cyan); }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            margin-left: 32px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--cyan); }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 120px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: clamp(40px, 8vw, 84px);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 30%, var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--cyan);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: var(--navy-light);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 12px;
+            transition: border-color 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--cyan);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .feature-icon {
+            color: var(--cyan);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* UI Preview Section */
+        .preview {
+            margin-top: 120px;
+            padding: 60px;
+            background: rgba(13, 21, 40, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            text-align: left;
+        }
+
+        .preview-header {
+            margin-bottom: 40px;
+        }
+
+        .preview-header h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .terminal {
+            background: #050810;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+        }
+
+        .line { margin-bottom: 4px; }
+        .line span { color: var(--cyan); }
+        .line.blocked { color: #ff4757; }
+        .line.dim { color: var(--text-muted); }
+
+        footer {
+            padding: 80px 0 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 120px;
+        }
+
+        .footer-links { margin-bottom: 24px; }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 16px;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .footer-links a:hover { color: var(--cyan); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 48px; }
+            .preview { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-glow"></div>
+    
+    <div class="container text-center">
+        <nav>
+            <div class="logo">Ad<span>Trace</span></div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="https://github.com/adtrace/extension" target="_blank">Source</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>Surgical Ad Blocking <br><span class="gradient-text">For Developers.</span></h1>
+            <p>DevTools-level visibility into Every. Single. Request. Stop blocking in the dark and start tracing the ad layer.</p>
+            <a href="#" class="cta-btn">Add to Chrome — Free</a>
+        </section>
+
+        <section id="features" class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Rule Attribution</h3>
+                <p>Every blocked request shows exactly which rule fired and from which list. Click to jump directly to the editor.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Click-to-Explain</h3>
+                <p>Click any hidden element on the page to see why it was blocked. No more guesswork about empty spaces.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Tracker Graph</h3>
+                <p>Visualize the data flow chain. See how trackers chain together and where your data is actually going.</p>
+            </div>
+        </section>
+
+        <section class="preview">
+            <div class="preview-header">
+                <h2>Built for your workflow.</h2>
+                <p style="color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Live request timeline with status classification.</p>
+            </div>
+            <div class="terminal">
+                <div class="line dim">[22:37:41] Navigation: nytimes.com</div>
+                <div class="line blocked"><span>[BLOCKED]</span> script: doubleclick.net/ads/ad_v2.js (EasyList #1)</div>
+                <div class="line blocked"><span>[BLOCKED]</span> script: analytics.google.com/collect (EasyPrivacy #11)</div>
+                <div class="line"><span>[ALLOWED]</span> script: static.nytimes.com/main.bundle.js</div>
+                <div class="line blocked"><span>[BLOCKED]</span> image: ads-twitter.com/pixel (Social #8)</div>
+                <div class="line"><span>[ALLOWED]</span> script: js.stripe.com/v3/ <span>(⚠ Auth Whitelisted)</span></div>
+                <div class="line dim">Tracing 14 active blocking rules...</div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="#">Security</a>
+                <a href="#">GitHub</a>
+                <a href="#">Discord</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 11px; font-family: 'JetBrains Mono', monospace;">AdTrace is open source and 100% local. No telemetry. No servers.</p>
+        </footer>
+    </div>
+</body>
+</html>

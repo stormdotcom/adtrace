@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | AdTrace</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+        
+        :root {
+            --navy: #080d1a;
+            --navy-light: #0d1528;
+            --cyan: #00d4ff;
+            --text: #e2e8f0;
+            --text-muted: #64748b;
+            --border: #1e2d4a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--navy);
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            line-height: 1.7;
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 40px 0 16px;
+            color: var(--cyan);
+        }
+
+        p {
+            margin-bottom: 24px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            color: var(--cyan);
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <h1>Privacy Policy</h1>
+        
+        <p>Last Updated: February 20, 2026</p>
+
+        <p>AdTrace is built with a "Privacy by Design" philosophy. We believe that a tool meant to protect your privacy should not compromise it.</p>
+
+        <h2>1. No Data Collection</h2>
+        <p>AdTrace does not collect, store, or transmit any personal data. We do not use cookies, tracking pixels, or any other form of telemetry to monitor your behavior.</p>
+
+        <h2>2. Local Processing</h2>
+        <p>All blocking logic, request tracing, and rule attribution happen locally within your browser. AdTrace does not send your browsing history or request logs to any remote server.</p>
+
+        <h2>3. Storage</h2>
+        <p>Your custom rules, whitelist domains, and extension settings are stored locally using the <code>chrome.storage.local</code> API. This data remains on your machine and is not synced to any cloud service unless you explicitly use browser-level sync features.</p>
+
+        <h2>4. Zero Telemetry</h2>
+        <p>We do not track extension installs, uninstalls, or usage patterns. We have no way of knowing who is using AdTrace or which websites they are visiting.</p>
+
+        <h2>5. Open Source</h2>
+        <p>AdTrace is open source. Our code is available for public audit to ensure that it operates exactly as described in this policy.</p>
+
+        <h2>6. Changes to this Policy</h2>
+        <p>This policy may be updated from time to time. Any changes will be posted on this page and reflected in the "Last Updated" date.</p>
+
+        <footer>
+            &copy; 2026 AdTrace. Built for developers, by developers.
+        </footer>
+    </div>
+</body>
+</html>
