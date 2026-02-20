@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | AdTrace</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap');
         
         :root {
             --navy: #080d1a;
@@ -14,6 +14,8 @@
             --text: #e2e8f0;
             --text-muted: #64748b;
             --border: #1e2d4a;
+            --font-ui: 'Syne', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,64 +23,83 @@
         body {
             background-color: var(--navy);
             color: var(--text);
-            font-family: 'Syne', sans-serif;
+            font-family: var(--font-ui);
             line-height: 1.7;
             padding: 80px 24px;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 800;
-            margin-bottom: 40px;
-            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #fff 40%, var(--cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         h2 {
             font-size: 24px;
             font-weight: 700;
-            margin: 40px 0 16px;
+            margin: 48px 0 20px;
             color: var(--cyan);
+            letter-spacing: -0.01em;
         }
 
         p {
             margin-bottom: 24px;
             color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 14px;
         }
 
         .back-link {
             display: inline-block;
-            margin-bottom: 40px;
+            margin-bottom: 48px;
             color: var(--cyan);
             text-decoration: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
         }
 
-        .back-link:hover { text-decoration: underline; }
+        .back-link:hover { color: #fff; }
 
         footer {
-            margin-top: 80px;
-            padding-top: 40px;
+            margin-top: 100px;
+            padding-top: 48px;
             border-top: 1px solid var(--border);
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 24px;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--cyan); }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-link">← Back to Home</a>
+        <a href="index.html" class="back-link">← Return to Home</a>
         <h1>Privacy Policy</h1>
         
-        <p>Last Updated: February 20, 2026</p>
+        <p>Last Updated: February 21, 2026</p>
 
         <p>AdTrace is built with a "Privacy by Design" philosophy. We believe that a tool meant to protect your privacy should not compromise it.</p>
 
@@ -97,11 +118,15 @@
         <h2>5. Open Source</h2>
         <p>AdTrace is open source. Our code is available for public audit to ensure that it operates exactly as described in this policy.</p>
 
-        <h2>6. Changes to this Policy</h2>
-        <p>This policy may be updated from time to time. Any changes will be posted on this page and reflected in the "Last Updated" date.</p>
+        <h2>6. GitHub Hub</h2>
+        <p>For transparency and community involvement, we maintain our source code and issue tracking on GitHub. You can visit the <a href="https://github.com/stormdotcom/adtrace-extension" style="color: var(--cyan); text-decoration: none;">AdTrace Hub</a> to audit the code or contribute to the project.</p>
 
         <footer>
-            &copy; 2026 AdTrace. Built for developers, by developers.
+            <div>&copy; 2026 AdTrace. Open Source. Local. Secure.</div>
+            <div class="footer-links">
+                <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">Hub</a>
+                <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">GitHub</a>
+            </div>
         </footer>
     </div>
 </body>
