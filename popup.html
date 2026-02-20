@@ -645,6 +645,87 @@
     font-size: 10px;
     color: var(--text-muted);
   }
+
+  /* Intent tags in log */
+  .meta-tag.intent {
+    border-radius: 2px;
+    font-weight: 500;
+  }
+  .meta-tag.intent.ad-network { background: var(--red-dim); color: var(--red); }
+  .meta-tag.intent.analytics { background: var(--amber-dim); color: var(--amber); }
+  .meta-tag.intent.session-replay { background: #f472b622; color: #f472b6; }
+  .meta-tag.intent.fingerprinting { background: #ef444422; color: #ef4444; }
+  .meta-tag.intent.crypto-miner { background: #dc262622; color: #dc2626; }
+  .meta-tag.intent.payment-sdk { background: var(--green-dim); color: var(--green); }
+  .meta-tag.intent.cdn { background: #06b6d422; color: #06b6d4; }
+  .meta-tag.intent.social { background: #8b5cf622; color: var(--purple); }
+  .meta-tag.intent.unknown { background: var(--navy-3); color: var(--text-muted); }
+  .meta-tag.intent.custom { background: var(--cyan-dim); color: var(--cyan); }
+
+  /* FP tag */
+  .meta-tag.fp-tag {
+    background: #f59e0b22;
+    border: 1px solid #f59e0b44;
+    color: var(--amber);
+    font-weight: 700;
+  }
+
+  /* FP warning bar */
+  .fp-warning-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: #f59e0b11;
+    border-bottom: 1px solid #f59e0b44;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--amber);
+  }
+  .fp-warning-bar.hidden { display: none; }
+  .fp-warning-bar .fp-dismiss-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--amber);
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  /* FP entry highlight */
+  .log-entry.fp-entry {
+    border-left: 2px solid var(--amber);
+  }
+
+  /* Entry list source */
+  .entry-list {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Inspect button */
+  .inspect-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    cursor: pointer;
+    transition: all .15s;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .inspect-btn:hover { border-color: var(--cyan); color: var(--cyan); }
 </style>
 </head>
 <body>
@@ -665,6 +746,7 @@
     <span class="logo-text">Ad<span>Trace</span></span>
   </div>
   <div class="header-controls">
+    <button class="inspect-btn" id="inspectBtn" title="Click any element to see why it's blocked">INSPECT</button>
     <button class="dev-btn" id="devModeBtn">
       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
         <path d="M3 2L1 5L3 8M7 2L9 5L7 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
@@ -689,8 +771,14 @@
   <button class="sim-close" id="simClose">✕</button>
 </div>
 
+<!-- False Positive Warning -->
+<div class="fp-warning-bar hidden" id="fpWarningBar">
+  <span>Warning: <strong id="fpCount">0</strong> blocked requests may break functionality</span>
+  <button class="fp-dismiss-btn" id="fpDismiss">Dismiss</button>
+</div>
+
 <!-- Stats -->
-<div class="stats-bar">
+<div class="stats-bar" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;">
   <div class="stat-cell">
     <span class="stat-num" id="statBlocked">0</span>
     <span class="stat-label">Blocked</span>
@@ -706,6 +794,10 @@
   <div class="stat-cell">
     <span class="stat-num purple" id="statSocial">0</span>
     <span class="stat-label">Social</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num" style="color: var(--green);" id="statSavings">0ms</span>
+    <span class="stat-label">Saved</span>
   </div>
 </div>
 
@@ -725,6 +817,7 @@
       <span class="filter-chip" data-cat="ad">Ads</span>
       <span class="filter-chip" data-cat="tracker">Track</span>
       <span class="filter-chip" data-cat="social">Social</span>
+      <span class="filter-chip" data-cat="fp" style="color: var(--amber);">FP</span>
     </div>
     <button class="clear-btn" id="clearLog">Clear</button>
   </div>
@@ -820,6 +913,10 @@
       <div class="report-row">
         <span class="report-key">Social Pixels</span>
         <span class="report-val" id="reportSocial">0</span>
+      </div>
+      <div class="report-row">
+        <span class="report-key">Est. Time Saved</span>
+        <span class="report-val" id="reportSavings" style="color: var(--green);">0ms</span>
       </div>
     </div>
 

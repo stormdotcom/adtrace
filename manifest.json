@@ -44,6 +44,8 @@
     "activeTab",
     "scripting",
     "webNavigation",
+    "webRequest",
+    "contextMenus",
     "downloads"
   ],
   "host_permissions": [
