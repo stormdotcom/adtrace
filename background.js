@@ -458,7 +458,7 @@ async function addTemporaryAllowRule(domain) {
       action: { type: 'allow' },
       condition: {
         requestDomains: [domain],
-        resourceTypes: ['script', 'image', 'xmlhttprequest', 'sub_frame', 'beacon', 'font', 'media', 'object', 'other', 'stylesheet', 'websocket', 'main_frame']
+        resourceTypes: ['script', 'image', 'xmlhttprequest', 'sub_frame', 'font', 'media', 'object', 'other', 'stylesheet', 'websocket', 'main_frame']
       }
     }]
   });
@@ -610,7 +610,7 @@ async function applyDomainOverrides() {
         action: { type: 'allow' },
         condition: {
           requestDomains: [domain],
-          resourceTypes: ['script', 'image', 'xmlhttprequest', 'sub_frame', 'beacon', 'font', 'media', 'object', 'other', 'stylesheet', 'websocket', 'main_frame']
+          resourceTypes: ['script', 'image', 'xmlhttprequest', 'sub_frame', 'font', 'media', 'object', 'other', 'stylesheet', 'websocket', 'main_frame']
         }
       });
     } else if (mode === 'block') {
@@ -620,7 +620,7 @@ async function applyDomainOverrides() {
         action: { type: 'block' },
         condition: {
           requestDomains: [domain],
-          resourceTypes: ['script', 'image', 'xmlhttprequest', 'sub_frame', 'beacon', 'font', 'media', 'object', 'other', 'stylesheet', 'websocket']
+          resourceTypes: ['script', 'image', 'xmlhttprequest', 'sub_frame', 'font', 'media', 'object', 'other', 'stylesheet', 'websocket']
         }
       });
     }

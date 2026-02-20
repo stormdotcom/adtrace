@@ -32,7 +32,7 @@
     "action": { "type": "block" },
     "condition": {
       "urlFilter": "||facebook.com/tr",
-      "resourceTypes": ["image", "xmlhttprequest", "beacon"]
+      "resourceTypes": ["image", "xmlhttprequest", "other"]
     }
   },
   {
@@ -95,7 +95,7 @@
     "action": { "type": "block" },
     "condition": {
       "urlFilter": "||analytics.google.com/analytics/collect",
-      "resourceTypes": ["xmlhttprequest", "image", "beacon"]
+      "resourceTypes": ["xmlhttprequest", "image", "other"]
     }
   },
   {
