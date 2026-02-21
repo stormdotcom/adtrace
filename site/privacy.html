@@ -4,130 +4,349 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | AdTrace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap');
-        
         :root {
-            --navy: #080d1a;
-            --navy-light: #0d1528;
-            --cyan: #00d4ff;
-            --text: #e2e8f0;
-            --text-muted: #64748b;
-            --border: #1e2d4a;
-            --font-ui: 'Syne', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --bg: #f8f9fa;
+            --bg-white: #ffffff;
+            --bg-hover: #f1f3f4;
+            --border: #dadce0;
+            --border-light: #e8eaed;
+            --text: #202124;
+            --text-secondary: #5f6368;
+            --text-tertiary: #80868b;
+            --blue: #1a73e8;
+            --blue-light: #e8f0fe;
+            --blue-dark: #1967d2;
+            --green: #34a853;
+            --green-light: #e6f4ea;
+            --font-sans: 'Google Sans', 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Google Sans Display', 'Google Sans', sans-serif;
+            --font-mono: 'Roboto Mono', 'Consolas', monospace;
+            --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+            --radius: 8px;
+            --radius-lg: 16px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            background-color: var(--navy);
+            background: var(--bg);
             color: var(--text);
-            font-family: var(--font-ui);
-            line-height: 1.7;
-            padding: 80px 24px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 800px;
+        /* === NAV === */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            max-width: 1120px;
             margin: 0 auto;
         }
 
-        h1 {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 48px;
-            letter-spacing: -0.04em;
-            background: linear-gradient(135deg, #fff 40%, var(--cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
         }
 
-        h2 {
-            font-size: 24px;
+        .logo-icon { width: 28px; height: 28px; }
+
+        .logo-text {
+            font-family: var(--font-sans);
+            font-size: 20px;
             font-weight: 700;
-            margin: 48px 0 20px;
-            color: var(--cyan);
-            letter-spacing: -0.01em;
+            color: var(--text);
         }
 
-        p {
-            margin-bottom: 24px;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
+        .logo-text span { color: var(--blue); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
             font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 24px;
+            transition: background .15s, color .15s;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-hover);
+            color: var(--text);
+        }
+
+        /* === CONTENT === */
+        .content-wrap {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
         }
 
         .back-link {
-            display: inline-block;
-            margin-bottom: 48px;
-            color: var(--cyan);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--blue);
             text-decoration: none;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 700;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            padding: 6px 12px 6px 8px;
+            border-radius: 24px;
+            transition: background .15s;
         }
 
-        .back-link:hover { color: #fff; }
+        .back-link:hover {
+            background: var(--blue-light);
+        }
 
-        footer {
-            margin-top: 100px;
-            padding-top: 48px;
-            border-top: 1px solid var(--border);
-            font-size: 11px;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
+        .back-link .material-icons-outlined {
+            font-size: 18px;
+        }
+
+        .page-title {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .page-meta {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .intro {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            padding: 20px 24px;
+            background: var(--blue-light);
+            border-radius: var(--radius);
+            border-left: 3px solid var(--blue);
+        }
+
+        .policy-section {
+            margin-bottom: 36px;
+        }
+
+        .policy-section h2 {
+            font-family: var(--font-sans);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 10px;
+        }
+
+        .policy-section h2 .material-icons-outlined {
+            font-size: 22px;
+            color: var(--blue);
+        }
+
+        .policy-section p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .policy-section a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .policy-section a:hover {
+            text-decoration: underline;
+        }
+
+        .policy-section code {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            background: var(--bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-light);
+            color: var(--blue);
+        }
+
+        /* === FOOTER === */
+        footer {
+            border-top: 1px solid var(--border-light);
+            background: var(--bg);
+            padding: 32px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
         }
 
         .footer-links a {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-decoration: none;
-            margin-left: 24px;
-            transition: color 0.2s;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color .15s;
         }
-        .footer-links a:hover { color: var(--cyan); }
+
+        .footer-links a:hover {
+            color: var(--blue);
+        }
+
+        @media (max-width: 600px) {
+            .page-title { font-size: 28px; }
+            .content-wrap { padding: 32px 16px 60px; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+            .nav-links .nav-link { display: none; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-link">← Return to Home</a>
-        <h1>Privacy Policy</h1>
-        
-        <p>Last Updated: February 21, 2026</p>
 
-        <p>AdTrace is built with a "Privacy by Design" philosophy. We believe that a tool meant to protect your privacy should not compromise it.</p>
-
-        <h2>1. No Data Collection</h2>
-        <p>AdTrace does not collect, store, or transmit any personal data. We do not use cookies, tracking pixels, or any other form of telemetry to monitor your behavior.</p>
-
-        <h2>2. Local Processing</h2>
-        <p>All blocking logic, request tracing, and rule attribution happen locally within your browser. AdTrace does not send your browsing history or request logs to any remote server.</p>
-
-        <h2>3. Storage</h2>
-        <p>Your custom rules, whitelist domains, and extension settings are stored locally using the <code>chrome.storage.local</code> API. This data remains on your machine and is not synced to any cloud service unless you explicitly use browser-level sync features.</p>
-
-        <h2>4. Zero Telemetry</h2>
-        <p>We do not track extension installs, uninstalls, or usage patterns. We have no way of knowing who is using AdTrace or which websites they are visiting.</p>
-
-        <h2>5. Open Source</h2>
-        <p>AdTrace is open source. Our code is available for public audit to ensure that it operates exactly as described in this policy.</p>
-
-        <h2>6. GitHub Hub</h2>
-        <p>For transparency and community involvement, we maintain our source code and issue tracking on GitHub. You can visit the <a href="https://github.com/stormdotcom/adtrace-extension" style="color: var(--cyan); text-decoration: none;">AdTrace Hub</a> to audit the code or contribute to the project.</p>
-
-        <footer>
-            <div>&copy; 2026 AdTrace. Open Source. Local. Secure.</div>
-            <div class="footer-links">
-                <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">Hub</a>
-                <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">GitHub</a>
-            </div>
-        </footer>
+<!-- Nav -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z" fill="#1a73e8" opacity=".12"/>
+                <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z" stroke="#1a73e8" stroke-width="1.5" fill="none"/>
+                <path d="M9 12l2 2 4-4" stroke="#1a73e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="logo-text">Ad<span>Trace</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank" class="nav-link">GitHub</a>
+        </div>
     </div>
+</nav>
+
+<!-- Content -->
+<div class="content-wrap">
+    <a href="index.html" class="back-link">
+        <span class="material-icons-outlined">arrow_back</span>
+        Back to Home
+    </a>
+
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-meta">Last updated: February 21, 2026</p>
+
+    <div class="intro">
+        AdTrace is built with a "Privacy by Design" philosophy. A tool meant to protect your privacy should never compromise it.
+    </div>
+
+    <div class="policy-section">
+        <h2>
+            <span class="material-icons-outlined">block</span>
+            1. No Data Collection
+        </h2>
+        <p>AdTrace does not collect, store, or transmit any personal data. We do not use cookies, tracking pixels, or any other form of telemetry to monitor your behavior.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>
+            <span class="material-icons-outlined">computer</span>
+            2. Local Processing
+        </h2>
+        <p>All blocking logic, request tracing, and rule attribution happen locally within your browser. AdTrace does not send your browsing history or request logs to any remote server.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>
+            <span class="material-icons-outlined">save</span>
+            3. Storage
+        </h2>
+        <p>Your custom rules, whitelist domains, and extension settings are stored locally using the <code>chrome.storage.local</code> API. This data remains on your machine and is not synced to any cloud service unless you explicitly use browser-level sync features.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>
+            <span class="material-icons-outlined">analytics</span>
+            4. Zero Telemetry
+        </h2>
+        <p>We do not track extension installs, uninstalls, or usage patterns. We have no way of knowing who is using AdTrace or which websites they are visiting.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>
+            <span class="material-icons-outlined">code</span>
+            5. Open Source
+        </h2>
+        <p>AdTrace is open source. Our code is available for public audit to ensure that it operates exactly as described in this policy.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>
+            <span class="material-icons-outlined">group</span>
+            6. Community
+        </h2>
+        <p>For transparency and community involvement, we maintain our source code and issue tracking on GitHub. You can visit the <a href="https://github.com/stormdotcom/adtrace-extension">AdTrace repository</a> to audit the code or contribute to the project.</p>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            &copy; 2026 AdTrace. Open source. Local. Secure.
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">GitHub</a>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>

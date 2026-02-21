@@ -4,333 +4,783 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AdTrace | Surgical Ad Blocker for Developers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Display:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap');
-        
         :root {
-            --navy: #080d1a;
-            --navy-light: #0d1528;
-            --cyan: #00d4ff;
-            --cyan-dim: rgba(0, 212, 255, 0.1);
-            --text: #e2e8f0;
-            --text-muted: #64748b;
-            --border: #1e2d4a;
-            --font-ui: 'Syne', sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --bg: #f8f9fa;
+            --bg-white: #ffffff;
+            --bg-hover: #f1f3f4;
+            --bg-elevated: #ffffff;
+            --border: #dadce0;
+            --border-light: #e8eaed;
+            --text: #202124;
+            --text-secondary: #5f6368;
+            --text-tertiary: #80868b;
+            --blue: #1a73e8;
+            --blue-light: #e8f0fe;
+            --blue-dark: #1967d2;
+            --red: #ea4335;
+            --red-light: #fce8e6;
+            --yellow: #fbbc04;
+            --yellow-light: #fef7e0;
+            --green: #34a853;
+            --green-light: #e6f4ea;
+            --purple: #a142f4;
+            --purple-light: #f3e8fd;
+            --font-sans: 'Google Sans', 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Google Sans Display', 'Google Sans', sans-serif;
+            --font-mono: 'Roboto Mono', 'Consolas', monospace;
+            --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+            --shadow-2: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
+            --shadow-3: 0 4px 8px 0 rgba(60,64,67,.3), 0 8px 16px 4px rgba(60,64,67,.15);
+            --radius: 8px;
+            --radius-lg: 16px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            background-color: var(--navy);
+            background: var(--bg);
             color: var(--text);
-            font-family: var(--font-ui);
+            font-family: var(--font-sans);
+            font-size: 14px;
             line-height: 1.6;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1120px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Nav */
+        /* === NAV === */
         nav {
-            padding: 40px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-inner {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        .logo span { color: var(--cyan); }
-
-        .nav-links a {
-            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-decoration: none;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            margin-left: 32px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: color 0.2s;
-            font-weight: 600;
         }
 
-        .nav-links a:hover { color: var(--cyan); }
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+        }
 
-        /* Hero */
+        .logo-text {
+            font-family: var(--font-sans);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .logo-text span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 24px;
+            transition: background .15s, color .15s;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-hover);
+            color: var(--text);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 20px;
+            background: var(--blue);
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 24px;
+            transition: background .15s, box-shadow .15s;
+            margin-left: 8px;
+        }
+
+        .nav-cta:hover {
+            background: var(--blue-dark);
+            box-shadow: var(--shadow-1);
+        }
+
+        /* === HERO === */
         .hero {
-            padding: 100px 0 140px;
             text-align: center;
-            position: relative;
+            padding: 80px 0 60px;
         }
 
-        .hero-glow {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            background: var(--blue-light);
+            color: var(--blue);
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 28px;
+        }
+
+        .hero-badge .material-icons-outlined {
+            font-size: 16px;
         }
 
         h1 {
-            font-size: clamp(40px, 8vw, 92px);
-            font-weight: 800;
-            line-height: 0.9;
-            letter-spacing: -0.04em;
-            margin-bottom: 32px;
+            font-family: var(--font-display);
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 20px;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #fff 40%, var(--cyan));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        h1 .highlight {
+            color: var(--blue);
         }
 
-        .hero p {
+        .hero-sub {
             font-size: 18px;
-            color: var(--text-muted);
-            max-width: 640px;
-            margin: 0 auto 48px;
-            font-family: var(--font-mono);
-            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
         }
 
-        .cta-btn {
-            display: inline-block;
-            padding: 18px 36px;
-            background: var(--cyan-dim);
-            color: var(--cyan);
-            border: 1px solid var(--cyan);
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 4px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            transition: all 0.2s;
-            font-family: var(--font-mono);
-        }
-
-        .cta-btn:hover {
-            background: var(--cyan);
-            color: var(--navy);
-            box-shadow: 0 0 32px var(--cyan-dim);
-        }
-
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 60px;
-        }
-
-        .feature-card {
-            background: var(--navy-light);
-            border: 1px solid var(--border);
-            padding: 40px;
-            border-radius: 12px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 1px;
-            background: linear-gradient(90deg, var(--cyan), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: var(--cyan);
-            transform: translateY(-4px);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-            font-family: var(--font-mono);
-        }
-
-        .feature-icon {
-            color: var(--cyan);
-            font-size: 28px;
-            margin-bottom: 24px;
-            background: var(--cyan-dim);
-            width: 50px;
-            height: 50px;
+        .hero-actions {
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
-        /* UI Preview Section */
-        .preview {
-            margin-top: 140px;
-            padding: 80px;
-            background: var(--navy-light);
-            border: 1px solid var(--border);
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--blue);
+            color: #fff;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
             border-radius: 24px;
-            text-align: left;
-            position: relative;
+            border: none;
+            cursor: pointer;
+            transition: background .15s, box-shadow .15s;
         }
 
-        .preview-header {
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            box-shadow: var(--shadow-2);
+        }
+
+        .btn-primary .material-icons-outlined {
+            font-size: 20px;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--bg-white);
+            color: var(--blue);
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: background .15s, border-color .15s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+            border-color: var(--blue);
+        }
+
+        .btn-secondary .material-icons-outlined {
+            font-size: 20px;
+        }
+
+        /* === PREVIEW CARD === */
+        .preview-section {
+            padding: 40px 0 80px;
+        }
+
+        .preview-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-2);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .preview-topbar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .preview-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .preview-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .preview-title {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .preview-body {
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 2;
+            background: #1e1e2e;
+            color: #cdd6f4;
+        }
+
+        .preview-body .line-blocked {
+            color: var(--red);
+        }
+
+        .preview-body .line-allowed {
+            color: var(--green);
+        }
+
+        .preview-body .line-dim {
+            color: #6c7086;
+        }
+
+        .preview-body .tag {
+            color: var(--blue);
+            font-weight: 500;
+        }
+
+        .preview-body .warn {
+            color: #fbbc04;
+        }
+
+        /* === FEATURES === */
+        .features-section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
             margin-bottom: 48px;
         }
 
-        .preview-header h2 {
+        .section-header h2 {
+            font-family: var(--font-display);
             font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
             margin-bottom: 12px;
             letter-spacing: -0.02em;
         }
 
-        .terminal {
-            background: #050810;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 32px;
-            font-family: var(--font-mono);
-            font-size: 13px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-            position: relative;
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 540px;
+            margin: 0 auto;
         }
 
-        .terminal::before {
-            content: 'ADTRACE_ENGINE_LOG';
-            position: absolute;
-            top: -12px;
-            left: 20px;
-            background: var(--navy);
-            padding: 2px 10px;
-            font-size: 10px;
-            color: var(--cyan);
-            border: 1px solid var(--border);
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            transition: box-shadow .2s, border-color .2s;
+        }
+
+        .feature-card:hover {
+            box-shadow: var(--shadow-2);
+            border-color: var(--border);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon .material-icons-outlined {
+            font-size: 24px;
+        }
+
+        .feature-icon.blue { background: var(--blue-light); color: var(--blue); }
+        .feature-icon.red { background: var(--red-light); color: var(--red); }
+        .feature-icon.green { background: var(--green-light); color: var(--green); }
+        .feature-icon.purple { background: var(--purple-light); color: var(--purple); }
+        .feature-icon.yellow { background: var(--yellow-light); color: #e37400; }
+
+        .feature-card h3 {
+            font-size: 18px;
             font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
         }
 
-        .line { margin-bottom: 6px; }
-        .line span { color: var(--cyan); }
-        .line.blocked { color: #ff4757; }
-        .line.dim { color: var(--text-muted); }
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
 
-        footer {
-            padding: 100px 0 60px;
+        /* === HOW IT WORKS === */
+        .how-section {
+            padding: 80px 0;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .step-card {
             text-align: center;
-            border-top: 1px solid var(--border);
-            margin-top: 140px;
+            padding: 24px;
         }
 
-        .footer-links { margin-bottom: 32px; }
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 11px;
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .step-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .step-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .step-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* === TRUST === */
+        .trust-section {
+            padding: 80px 0;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+
+        .trust-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .trust-card .material-icons-outlined {
+            font-size: 28px;
+            color: var(--blue);
+            margin-bottom: 12px;
+        }
+
+        .trust-card h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .trust-card p {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        /* === CTA === */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+        }
+
+        /* === FOOTER === */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .footer-left span {
+            color: var(--blue);
             font-weight: 500;
         }
-        
-        .footer-links a:hover { color: var(--cyan); }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 52px; }
-            .preview { padding: 32px; }
-            .hero { padding: 60px 0 100px; }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color .15s;
+        }
+
+        .footer-links a:hover {
+            color: var(--blue);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 900px) {
+            .features-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 48px 0 32px; }
+            h1 { font-size: 32px; }
+            .hero-sub { font-size: 15px; }
+            .nav-links .nav-link { display: none; }
+            .trust-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="hero-glow"></div>
-    
-    <div class="container text-center">
-        <nav>
-            <div class="logo">Ad<span>Trace</span></div>
-            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">GitHub</a>
+
+<!-- Nav -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="logo">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z" fill="#1a73e8" opacity=".12"/>
+                <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z" stroke="#1a73e8" stroke-width="1.5" fill="none"/>
+                <path d="M9 12l2 2 4-4" stroke="#1a73e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="logo-text">Ad<span>Trace</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="privacy.html" class="nav-link">Privacy</a>
+            <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank" class="nav-link">GitHub</a>
+            <a href="#" class="nav-cta">
+                <span class="material-icons-outlined" style="font-size:18px;">download</span>
+                Install
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">
+            <span class="material-icons-outlined">verified</span>
+            Open source &middot; 100% local &middot; Zero telemetry
+        </div>
+        <h1>Surgical Ad Blocking<br><span class="highlight">For Developers.</span></h1>
+        <p class="hero-sub">DevTools-level visibility into every single request. Stop blocking in the dark and start tracing the ad layer with surgical precision.</p>
+        <div class="hero-actions">
+            <a href="#" class="btn-primary">
+                <span class="material-icons-outlined">extension</span>
+                Add to Chrome
+            </a>
+            <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank" class="btn-secondary">
+                <span class="material-icons-outlined">code</span>
+                View Source
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Preview -->
+<section class="preview-section">
+    <div class="container">
+        <div class="preview-card">
+            <div class="preview-topbar">
+                <div class="preview-dots"><span></span><span></span><span></span></div>
+                <span class="preview-title">AdTrace &mdash; DevPanel Request Log</span>
             </div>
-        </nav>
+            <div class="preview-body">
+                <div class="line-dim">[22:37:41] Navigation: nytimes.com</div>
+                <div class="line-blocked"><span class="tag">[BLOCKED]</span> script: doubleclick.net/ads/ad_v2.js <span class="line-dim">(EasyList #1)</span></div>
+                <div class="line-blocked"><span class="tag">[BLOCKED]</span> script: analytics.google.com/collect <span class="line-dim">(EasyPrivacy #11)</span></div>
+                <div class="line-allowed"><span class="tag">[ALLOWED]</span> script: static.nytimes.com/main.bundle.js</div>
+                <div class="line-blocked"><span class="tag">[BLOCKED]</span> image: ads-twitter.com/pixel <span class="line-dim">(Social #8)</span></div>
+                <div class="line-allowed"><span class="tag">[ALLOWED]</span> script: js.stripe.com/v3/ <span class="warn">(Auth Whitelisted)</span></div>
+                <div class="line-dim">Tracing 14 active blocking rules...</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <section class="hero">
-            <h1>Surgical Ad Blocking <br><span class="gradient-text">For Developers.</span></h1>
-            <p>DevTools-level visibility into Every. Single. Request. Stop blocking in the dark and start tracing the ad layer with surgical precision.</p>
-            <a href="#" class="cta-btn">Install Extension</a>
-        </section>
-
-        <section id="features" class="features">
+<!-- Features -->
+<section id="features" class="features-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Built for developers who care</h2>
+            <p>Every feature is designed to give you full transparency into what's being blocked and why.</p>
+        </div>
+        <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🔍</div>
+                <div class="feature-icon blue">
+                    <span class="material-icons-outlined">search</span>
+                </div>
                 <h3>Rule Attribution</h3>
                 <p>Every blocked request shows exactly which rule fired and from which list. Click to jump directly to the editor.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📸</div>
+                <div class="feature-icon red">
+                    <span class="material-icons-outlined">touch_app</span>
+                </div>
                 <h3>Click-to-Explain</h3>
                 <p>Click any hidden element on the page to see why it was blocked. No more guesswork about empty spaces.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">�</div>
+                <div class="feature-icon purple">
+                    <span class="material-icons-outlined">hub</span>
+                </div>
                 <h3>Tracker Graph</h3>
                 <p>Visualize the data flow chain. See how trackers chain together and where your data is actually going.</p>
             </div>
-        </section>
-
-        <section class="preview">
-            <div class="preview-header">
-                <h2>Built for your workflow.</h2>
-                <p style="color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">Live request timeline with status classification.</p>
+            <div class="feature-card">
+                <div class="feature-icon green">
+                    <span class="material-icons-outlined">timer</span>
+                </div>
+                <h3>Timeline View</h3>
+                <p>See a real-time waterfall of every request. Blocked vs. allowed, with timing data and resource type.</p>
             </div>
-            <div class="terminal">
-                <div class="line dim">[22:37:41] Navigation: nytimes.com</div>
-                <div class="line blocked"><span>[BLOCKED]</span> script: doubleclick.net/ads/ad_v2.js (EasyList #1)</div>
-                <div class="line blocked"><span>[BLOCKED]</span> script: analytics.google.com/collect (EasyPrivacy #11)</div>
-                <div class="line"><span>[ALLOWED]</span> script: static.nytimes.com/main.bundle.js</div>
-                <div class="line blocked"><span>[BLOCKED]</span> image: ads-twitter.com/pixel (Social #8)</div>
-                <div class="line"><span>[ALLOWED]</span> script: js.stripe.com/v3/ <span>(⚠ Auth Whitelisted)</span></div>
-                <div class="line dim">Tracing 14 active blocking rules...</div>
+            <div class="feature-card">
+                <div class="feature-icon yellow">
+                    <span class="material-icons-outlined">edit_note</span>
+                </div>
+                <h3>Custom Rules</h3>
+                <p>Write network and cosmetic rules with live preview. Apply per-domain or globally with instant feedback.</p>
             </div>
-        </section>
-
-        <footer>
-            <div class="footer-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">Source Code</a>
-                <a href="https://github.com/stormdotcom/adtrace-extension/issues" target="_blank">Report Issue</a>
-                <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">Hub</a>
+            <div class="feature-card">
+                <div class="feature-icon blue">
+                    <span class="material-icons-outlined">file_download</span>
+                </div>
+                <h3>Export Reports</h3>
+                <p>Export detailed JSON or CSV reports of all blocked requests, domains, and rule matches for any page.</p>
             </div>
-            <p style="color: var(--text-muted); font-size: 11px; font-family: 'JetBrains Mono', monospace;">AdTrace is open source and 100% local. No telemetry. No servers.</p>
-        </footer>
+        </div>
     </div>
+</section>
+
+<!-- How it works -->
+<section class="how-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>How it works</h2>
+            <p>Get started in under a minute. No accounts, no config, no servers.</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3>Install the extension</h3>
+                <p>Add AdTrace from the Chrome Web Store or load it as an unpacked extension for development.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3>Browse normally</h3>
+                <p>AdTrace silently blocks ads and trackers using built-in filter lists. The popup shows live stats.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <h3>Open DevTools panel</h3>
+                <p>Open the AdTrace DevPanel for full request-level tracing, rule attribution, and the tracker graph.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust -->
+<section class="trust-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Privacy by design</h2>
+            <p>AdTrace is built with the same privacy standards you'd expect from a tool meant to protect it.</p>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <span class="material-icons-outlined">cloud_off</span>
+                <h4>No servers</h4>
+                <p>All processing runs locally in your browser</p>
+            </div>
+            <div class="trust-card">
+                <span class="material-icons-outlined">analytics</span>
+                <h4>Zero telemetry</h4>
+                <p>No tracking, no analytics, no usage data</p>
+            </div>
+            <div class="trust-card">
+                <span class="material-icons-outlined">lock</span>
+                <h4>Local storage</h4>
+                <p>Settings and rules stay on your machine</p>
+            </div>
+            <div class="trust-card">
+                <span class="material-icons-outlined">code</span>
+                <h4>Open source</h4>
+                <p>Full source code available for audit</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h2>Ready to see what's really happening?</h2>
+        <p>Install AdTrace and take control of your browsing experience.</p>
+        <a href="#" class="btn-primary">
+            <span class="material-icons-outlined">extension</span>
+            Add to Chrome &mdash; It's Free
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z" fill="#1a73e8" opacity=".12"/>
+                <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z" stroke="#1a73e8" stroke-width="1.5" fill="none"/>
+                <path d="M9 12l2 2 4-4" stroke="#1a73e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            AdTrace <span>v1.0</span> &middot; Open source &middot; 100% local
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a>
+            <a href="https://github.com/stormdotcom/adtrace-extension" target="_blank">GitHub</a>
+            <a href="https://github.com/stormdotcom/adtrace-extension/issues" target="_blank">Issues</a>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
