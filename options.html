@@ -4,113 +4,135 @@
     <meta charset="UTF-8" />
     <title>AdTrace Options</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@400;600;700;800&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap');
+
       :root {
-        --navy: #080d1a;
-        --navy-2: #0d1528;
-        --navy-3: #111d35;
-        --navy-4: #1a2847;
-        --cyan: #00d4ff;
-        --cyan-dim: #00d4ff22;
-        --amber: #f59e0b;
-        --red: #ff4757;
-        --green: #2dce7d;
-        --text: #e2e8f0;
-        --text-muted: #64748b;
-        --text-dim: #94a3b8;
-        --border: #1e2d4a;
-        --font-mono: "JetBrains Mono", monospace;
-        --font-ui: "Syne", system-ui, sans-serif;
+        --bg: #f8f9fa;
+        --bg-white: #ffffff;
+        --bg-hover: #f1f3f4;
+        --bg-active: #e8f0fe;
+        --border: #dadce0;
+        --border-light: #e8eaed;
+        --text: #202124;
+        --text-secondary: #5f6368;
+        --text-tertiary: #80868b;
+        --blue: #1a73e8;
+        --blue-light: #e8f0fe;
+        --blue-dark: #1967d2;
+        --red: #ea4335;
+        --red-light: #fce8e6;
+        --yellow: #fbbc04;
+        --yellow-light: #fef7e0;
+        --green: #34a853;
+        --green-light: #e6f4ea;
+        --font-sans: 'Google Sans', 'Segoe UI', Roboto, sans-serif;
+        --font-mono: 'Roboto Mono', 'Consolas', monospace;
+        --shadow-1: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+        --shadow-2: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15);
+        --radius: 8px;
+        --radius-lg: 12px;
       }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
+
       body {
-        background: var(--navy);
+        background: var(--bg);
         color: var(--text);
-        font-family: var(--font-ui);
+        font-family: var(--font-sans);
         max-width: 800px;
         margin: 0 auto;
         padding: 40px 24px;
+        line-height: 1.5;
       }
 
       .page-header {
         margin-bottom: 32px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--border);
-        position: relative;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border-light);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
-      .page-header::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, var(--cyan), transparent);
-      }
+
       h1 {
-        font-family: var(--font-ui);
+        font-family: var(--font-sans);
         font-size: 28px;
-        font-weight: 800;
-        letter-spacing: -0.02em;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--text);
       }
       h1 span {
-        color: var(--cyan);
+        color: var(--blue);
       }
       .subtitle {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        color: var(--text-muted);
-        margin-top: 4px;
+        font-size: 13px;
+        color: var(--text-secondary);
       }
 
       .section {
-        margin-bottom: 28px;
+        background: var(--bg-white);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 1px 2px rgba(60,64,67,0.08);
       }
+
       .section-title {
-        font-family: var(--font-mono);
-        font-size: 10px;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 12px;
-        padding-bottom: 6px;
-        border-bottom: 1px solid var(--border);
+        font-family: var(--font-sans);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text);
+        text-transform: none;
+        letter-spacing: normal;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-light);
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
       .option-row {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid var(--border);
-        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border-light);
+        gap: 24px;
       }
       .option-row:last-child {
         border-bottom: none;
+        padding-bottom: 0;
       }
+      .option-row:first-child {
+        padding-top: 0;
+      }
+      
       .option-info {
         flex: 1;
       }
       .option-label {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 3px;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 4px;
       }
       .option-desc {
-        font-family: var(--font-mono);
-        font-size: 10px;
-        color: var(--text-muted);
+        font-size: 13px;
+        color: var(--text-secondary);
         line-height: 1.5;
       }
 
+      /* Google Style Toggle */
       .toggle {
         position: relative;
-        width: 44px;
-        height: 24px;
+        width: 34px;
+        height: 14px;
         flex-shrink: 0;
       }
       .toggle input {
@@ -119,133 +141,139 @@
       .toggle-track {
         position: absolute;
         inset: 0;
-        background: var(--navy-4);
-        border: 1px solid var(--border);
-        border-radius: 12px;
+        background: #bdc1c6;
+        border-radius: 7px;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: background 0.2s;
       }
       .toggle-thumb {
         position: absolute;
-        top: 4px;
-        left: 4px;
-        width: 14px;
-        height: 14px;
-        background: var(--text-muted);
+        top: -3px;
+        left: -1px;
+        width: 20px;
+        height: 20px;
+        background: #fafafa;
         border-radius: 50%;
-        transition:
-          transform 0.2s,
-          background 0.2s;
+        box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+        transition: transform 0.2s, background 0.2s;
         pointer-events: none;
       }
       .toggle input:checked + .toggle-track {
-        background: var(--cyan-dim);
-        border-color: var(--cyan);
+        background: #a8c7fa;
       }
       .toggle input:checked + .toggle-track + .toggle-thumb {
-        transform: translateX(20px);
-        background: var(--cyan);
+        transform: translateX(16px);
+        background: var(--blue);
       }
 
       textarea.code-input {
         width: 100%;
-        background: var(--navy-2);
+        background: #f1f3f4;
         border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 10px;
+        border-radius: var(--radius);
+        padding: 12px;
         font-family: var(--font-mono);
-        font-size: 11px;
+        font-size: 12px;
         color: var(--text);
         outline: none;
         resize: vertical;
         min-height: 120px;
-        transition: border-color 0.15s;
+        transition: border-color 0.15s, background-color 0.15s;
         line-height: 1.6;
       }
       textarea.code-input:focus {
-        border-color: var(--cyan);
+        border-color: var(--blue);
+        background: var(--bg-white);
+        box-shadow: 0 0 0 2px var(--blue-light);
       }
 
       .save-btn {
-        margin-top: 10px;
-        padding: 8px 20px;
-        background: var(--cyan-dim);
-        border: 1px solid var(--cyan);
-        border-radius: 4px;
-        color: var(--cyan);
-        font-family: var(--font-mono);
-        font-size: 11px;
+        margin-top: 16px;
+        padding: 10px 24px;
+        background: var(--blue);
+        border: none;
+        border-radius: 20px;
+        color: #ffffff;
+        font-family: var(--font-sans);
+        font-size: 14px;
+        font-weight: 500;
         cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 0.07em;
-        transition: all 0.15s;
+        transition: background 0.15s, box-shadow 0.15s;
       }
       .save-btn:hover {
-        background: var(--cyan);
-        color: var(--navy);
+        background: var(--blue-dark);
+        box-shadow: var(--shadow-1);
       }
       .save-status {
-        font-family: var(--font-mono);
-        font-size: 10px;
+        font-size: 13px;
         color: var(--green);
-        margin-left: 10px;
+        margin-left: 12px;
+        font-weight: 500;
         display: none;
       }
 
       .info-box {
-        background: var(--navy-2);
-        border: 1px solid var(--border);
-        border-left: 3px solid var(--cyan);
-        padding: 12px 14px;
+        background: #e8f0fe;
+        border-left: 4px solid var(--blue);
+        padding: 16px;
         border-radius: 4px;
-        font-family: var(--font-mono);
-        font-size: 10px;
-        color: var(--text-dim);
-        line-height: 1.7;
+        font-size: 13px;
+        color: var(--blue-dark);
+        line-height: 1.6;
+        margin-bottom: 16px;
       }
       .info-box code {
-        color: var(--cyan);
+        background: rgba(26, 115, 232, 0.1);
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-family: var(--font-mono);
+        color: var(--blue);
+        font-size: 12px;
       }
 
       .stat-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
+        gap: 16px;
       }
       .stat-box {
-        background: var(--navy-2);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 12px;
+        background: #f8f9fa;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius);
+        padding: 20px;
         text-align: center;
+        transition: transform 0.2s;
+      }
+      .stat-box:hover {
+        transform: translateY(-2px);
+        background: var(--bg-white);
+        box-shadow: var(--shadow-1);
       }
       .stat-box-num {
-        font-family: var(--font-mono);
-        font-size: 22px;
+        font-family: var(--font-sans);
+        font-size: 28px;
         font-weight: 700;
-        color: var(--cyan);
+        color: var(--blue);
         display: block;
       }
       .stat-box-label {
-        font-family: var(--font-mono);
-        font-size: 9px;
-        color: var(--text-muted);
+        font-size: 11px;
+        color: var(--text-tertiary);
         text-transform: uppercase;
-        letter-spacing: 0.07em;
-        margin-top: 2px;
+        letter-spacing: 0.05em;
+        margin-top: 4px;
         display: block;
+        font-weight: 700;
       }
 
       .firefox-note {
-        background: #f59e0b11;
-        border: 1px solid #f59e0b44;
+        background: var(--yellow-light);
+        border-left: 4px solid var(--yellow);
+        padding: 16px;
         border-radius: 4px;
-        padding: 10px 14px;
-        font-family: var(--font-mono);
-        font-size: 10px;
-        color: var(--amber);
+        font-size: 13px;
+        color: #7c4a03;
         line-height: 1.6;
-        margin-top: 8px;
       }
     </style>
   </head>
@@ -256,7 +284,10 @@
     </div>
 
     <div class="section">
-      <div class="section-title">Blocking Behavior</div>
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        Blocking Behavior
+      </div>
       <div class="option-row">
         <div class="option-info">
           <div class="option-label">Block Ads</div>
@@ -328,16 +359,11 @@
     </div>
 
     <div class="section" id="whitelistDomainsSection">
-      <div class="section-title">Custom Whitelist Domains</div>
-      <div
-        class="option-desc"
-        style="
-          margin-bottom: 8px;
-          font-family: var(--font-mono);
-          font-size: 10px;
-          color: var(--text-muted);
-        "
-      >
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Custom Whitelist Domains
+      </div>
+      <div class="option-desc" style="margin-bottom: 12px;">
         One domain per line. These domains will never be blocked.
       </div>
       <textarea
@@ -350,7 +376,10 @@
     </div>
 
     <div class="section" id="customNetworkRules">
-      <div class="section-title">Custom Network Filter Rules</div>
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        Custom Network Filter Rules
+      </div>
       <div class="info-box" style="margin-bottom: 10px">
         Use AdBlock-style filter syntax:<br />
         <code>||example.com^</code> — block entire domain<br />
@@ -368,7 +397,10 @@
     </div>
 
     <div class="section" id="customCosmeticRules">
-      <div class="section-title">Custom Cosmetic Rules</div>
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+        Custom Cosmetic Rules
+      </div>
       <div class="info-box" style="margin-bottom: 10px">
         CSS selector-based element hiding:<br />
         <code>##.ad-banner</code> — hide globally<br />
@@ -385,7 +417,10 @@
     </div>
 
     <div class="section">
-      <div class="section-title">Session Statistics</div>
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        Session Statistics
+      </div>
       <div class="stat-grid">
         <div class="stat-box">
           <span class="stat-box-num" id="totalBlocked">—</span
@@ -403,7 +438,10 @@
     </div>
 
     <div class="section" id="staticRules">
-      <div class="section-title">Global Rulesets (Static)</div>
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        Global Rulesets (Static)
+      </div>
       <div class="info-box">
         These rules are part of the core AdTrace engine and cannot be edited.
         They are based on EasyList and EasyPrivacy. To override them, add a
@@ -412,7 +450,10 @@
     </div>
 
     <div class="section">
-      <div class="section-title">Firefox Compatibility</div>
+      <div class="section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+        Firefox Compatibility
+      </div>
       <div class="firefox-note">
         AdTrace is built with Firefox MV3 compatibility in mind. The
         <code>declarativeNetRequest</code> API is supported in Firefox 113+. To
